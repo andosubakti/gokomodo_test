@@ -8,6 +8,7 @@ const Table = ({
     totalData,
     totalPage,
     currentPage,
+    limit,
     onNext = () => { },
     onPrev = () => { },
     onClickPage = () => { }
@@ -29,8 +30,15 @@ const Table = ({
         } else {
             result.push(current, current + 1, current + 2, '...', totalPage);
         }
-        console.log("yuhuuuu", result)
         return result;
+    }
+
+    const showingCounters = () => {
+        if (currentPage != totalPage) {
+            return `${limit * currentPage - 9} - ${limit * currentPage}`
+        } else if (limit * currentPage - 9 === totalData) {
+            return totalData
+        } else return `${limit * currentPage - 9} - ${totalData}`
     }
 
     return (
@@ -72,7 +80,7 @@ const Table = ({
                     </tbody>
                 </table>
                 <nav className="flex justify-between items-center pt-4" aria-label="Table navigation">
-                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span className="font-semibold text-gray-900 dark:text-white">1-10</span> of <span className="font-semibold text-gray-900 dark:text-white">{totalData}</span></span>
+                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span className="font-semibold text-gray-900 dark:text-white">{showingCounters()}</span> of <span className="font-semibold text-gray-900 dark:text-white">{totalData}</span></span>
                     <ul className="inline-flex items-center -space-x-px">
                         <div onClick={() => onPrev()} className={currentPage === 1 ? "hidden" : "cursor-pointer block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"}>
                             <span className="sr-only">Previous</span>

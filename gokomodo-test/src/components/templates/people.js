@@ -15,10 +15,6 @@ const People = () => {
         dispatch(getPeopleService(params))
     }, [page])
 
-    useEffect(() => {
-        console.log("yuhu", data.results)
-    }, [data])
-
     const dataTable = React.useMemo(
         () => data?.results,
         [data]
@@ -94,6 +90,7 @@ const People = () => {
                         totalData={data?.count}
                         totalPage={totalPage()}
                         currentPage={page}
+                        limit={10}
                         onNext={() => onNextHandler()}
                         onPrev={() => onPrevHandler()}
                         onClickPage={(page) => goToPageHandler(page)}
