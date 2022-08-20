@@ -1,0 +1,3 @@
+export const GET_PEOPLE = 'GET_PEOPLE';
+export const GET_PEOPLE_SUCCESS = 'GET_PEOPLE_SUCCESS';
+export const GET_PEOPLE_ERROR = 'GET_PEOPLE_ERROR';
